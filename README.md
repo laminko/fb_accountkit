@@ -1,6 +1,6 @@
 # fb_accountkit
 
-A python module for server-side to integrate with Facebook's AccountKit.
+A simple python module for Facebook's AccountKit server-side implementations.
 
 ## Dependencies
 
@@ -23,8 +23,7 @@ fbak = FBAccountKit(
     version='v1.1'
 )
 
-
-# store token to response back to client.
+# store token (user_access_token) to response back to client.
 token_info = fbak.retrieve_user_access_token('auth_code_from_client')
 
 # to validate token, call `get_user_session()`
