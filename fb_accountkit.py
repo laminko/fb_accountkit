@@ -17,12 +17,12 @@ class FBAccountKit(object):
     }
 
     def __init__(self, app_id, app_secret, version='v1.1', debug=False):
-        self.__APP_ID = app_id
-        self.__APP_SECRET = app_secret
-        self.__AK_API_Version = version
-        self.__APP_Access_Token = 'AA|{}|{}'.format(
-            self.__APP_ID,
-            self.__APP_SECRET
+        self.App_ID = app_id
+        self.App_secret = app_secret
+        self.API_Version = version
+        self.App_Access_Token = 'AA|{}|{}'.format(
+            self.App_ID,
+            self.App_secret
         )
         self.__user_access_token = None
         self.__debug = debug
@@ -30,7 +30,7 @@ class FBAccountKit(object):
 
     def __prepare_api_urls(self):
         for k, v in self.__apis.items():
-            self.__apis[k] = v.format(version=self.__AK_API_Version)
+            self.__apis[k] = v.format(version=self.API_Version)
 
     def console_print(self, *args, **kwargs):
         """
@@ -45,7 +45,7 @@ class FBAccountKit(object):
 
     def retrieve_user_access_token(self, auth_code):
         """
-        Retrieve User Access Token using Authorization Code.
+        Retrieve User Access Token using Authorization Code provided by Client.
 
         :param auth_code:
         :return:
@@ -54,7 +54,7 @@ class FBAccountKit(object):
         params = dict(
             grant_type='authorization_code',
             code=auth_code,
-            access_token=self.__APP_Access_Token
+            access_token=self.App_Access_Token
         )
         url = self.__apis.get('access_token')
         resp = requests.get(url, params=params)
@@ -64,16 +64,19 @@ class FBAccountKit(object):
             self.__user_access_token = data.get('access_token')
         return data
 
-    def get_app_secret_proof(self):
+    def get_app_secret_proof(self, access_token=None):
         """
         Generate APP secret proof using User Access Token.
 
+        :param access_token:
         :return:
         """
+        if not access_token:
+            access_token = self.__user_access_token
 
         return hmac.new(
-            bytes(self.__APP_SECRET, 'utf-8'),
-            bytes(self.__user_access_token, 'utf-8'),
+            bytes(self.App_secret, 'utf-8'),
+            bytes(access_token, 'utf-8'),
             hashlib.sha256
         ).hexdigest()
 
