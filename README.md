@@ -9,7 +9,7 @@ A python module for server-side to integrate Facebook's AccountKit.
 ## Installation
 
 ```bash
-pip install fb_accountkit
+pip install fb-accountkit
 ```
 
 ## Usage
