@@ -1,6 +1,6 @@
 # fb_accountkit
 
-A simple python module for Facebook's AccountKit server-side implementations.
+A simple python module for Facebook's [AccountKit](https://developers.facebook.com/docs/accountkit/) server-side implementations.
 
 ## Dependencies
 
