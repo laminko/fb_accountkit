@@ -19,12 +19,10 @@ URL = 'https://github.com/laminko/fb_accountkit'
 EMAIL = 'lminko.lmk@gmail.com'
 AUTHOR = 'lmk'
 REQUIRES_PYTHON = '>=3.5.2'
-VERSION = '1.0.1'
+VERSION = '1.0.2'
 
 # What packages are required for this module to be executed?
-REQUIRED = [
-    'requests'
-]
+REQUIRED = []
 
 # What packages are optional?
 EXTRAS = {
