@@ -71,7 +71,7 @@ class FBAccountKit(object):
             access_token=self.App_Access_Token
         )
         url = self.__apis.get('access_token')
-        data = self.call_requests('get', url, params=params)
+        data = self.__call_requests('get', url, params=params)
         self.__user_access_token = data.get('access_token')
         return data
 
@@ -105,7 +105,7 @@ class FBAccountKit(object):
             appsecret_proof=self.get_app_secret_proof()
         )
         url = self.__apis.get('me')
-        return self.call_requests('get', url, params=params)
+        return self.__call_requests('get', url, params=params)
 
     def get_accounts_after_removal(self, item_per_page=100):
         """
@@ -124,7 +124,7 @@ class FBAccountKit(object):
             limit=item_per_page
         )
         url = self.__apis.get('accounts')
-        return self.call_requests('get', url, params=params)
+        return self.__call_requests('get', url, params=params)
 
     def logout(self):
         """
@@ -141,7 +141,7 @@ class FBAccountKit(object):
             appsecret_proof=self.get_app_secret_proof(self.__user_access_token)
         )
         url = self.__apis.get('logout')
-        return self.call_requests('post', url, params=params)
+        return self.__call_requests('post', url, params=params)
 
     def logout_all_session(self, account_id):
         """
@@ -158,7 +158,7 @@ class FBAccountKit(object):
         params = dict(
             access_token=self.App_Access_Token
         )
-        return self.call_requests('post', url, params=params)
+        return self.__call_requests('post', url, params=params)
 
     def remove(self, account_id):
         """
@@ -173,9 +173,9 @@ class FBAccountKit(object):
         params = dict(
             access_token=self.App_Access_Token
         )
-        return self.call_requests('delete', url, params=params)
+        return self.__call_requests('delete', url, params=params)
 
-    def call_requests(self, method, url, *args, **kwargs):
+    def __call_requests(self, method, url, *args, **kwargs):
         """
         A wrapper function for python-requests.
         Raise if requests.exceptions.HTTPError occurred.
