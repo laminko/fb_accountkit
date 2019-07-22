@@ -143,7 +143,7 @@ class FBAccountKit(object):
         url = self.__apis.get('logout')
         return self.__call_requests('post', url, params=params)
 
-    def logout_all_session(self, account_id):
+    def logout_all_sessions(self, account_id):
         """
         WARNING: USE WITH CAUTION.
 
