@@ -34,6 +34,6 @@ fbak.logout()
 
 # to logout all sessions (account_id must be provided)
 me = fbak.get_user_session()
-fbak.logout_all_session(me.get('id'))
+fbak.logout_all_sessions(me.get('id'))
 
 ```
